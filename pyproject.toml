@@ -3,13 +3,28 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "unc"
+name = "ci-exercise-yz5694"
 version = "0.1.0"
-requires-python = ">=3.9"
-dependencies = [
-    "typing_extensions; python_version<'3.11'"
-]
+requires-python = ">= 3.9"
+dependencies = ["typing_extensions; python_version<'3.11'"]
 
 [project.optional-dependencies]
-test = ["pytest", "uncertainties"]
-docs = ["sphinx", "furo", "myst_parser"]
+test = ["pytest",
+  "uncertainties",
+]
+docs = [
+  "sphinx",
+  "furo",
+  "myst_parser",
+]
+
+[tool.ruff.lint]
+extend-select = [
+  "B",           # flake8-bugbear
+  "I",           # isort
+  "RUF",         # Ruff-specific
+  "UP",          # pyupgrade
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/unc"]
